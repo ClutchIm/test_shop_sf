@@ -26,6 +26,11 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.name.title()}: {self.description[:10]}'
 
+    # допишем свойство, которое будет отображать есть ли товар на складе
+    @property
+    def on_stock(self):
+        return self.quantity > 0
+
     def get_absolute_url(self):
         return reverse('product_detail', args=[str(self.id)])
 
